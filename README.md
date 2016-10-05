@@ -85,10 +85,4 @@ This is a product from AirBnB to allow us to do assertions on our react componen
 
 ### [Redux Dev Tools](https://github.com/gaearon/redux-devtools)
 
-## Todo
-
-- [ ] Test: Unit tests for redux reducers
-- [ ] Test: Test coverage
-- [ ] Document the planet
-
 [![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)

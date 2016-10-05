@@ -12,7 +12,7 @@ class App extends Component {
     return {
       exampleActionSync: PropTypes.func.isRequired,
       exampleActionAsync: PropTypes.func.isRequired,
-      exampleMessage: PropTypes.string
+      message: PropTypes.string
     }
   }
 
@@ -32,14 +32,15 @@ class App extends Component {
   }
 
   render () {
-    const { exampleMessage } = this.props
+    const { message } = this.props
+    console.info(message)
 
     return (
       <div>
         <h1>App</h1>
-        <p>{ exampleMessage }</p>
         <button onClick={this.handleClick.bind(this, true)}>Sync Click</button>
         <button onClick={this.handleClick.bind(this, false)}>Async Click</button>
+        <p>{message}</p>
       </div>
     )
   }
@@ -59,7 +60,7 @@ function mapStateToProps (state) {
   console.log('REDUX STATE:', state)
 
   return {
-    exampleMessage: state.example
+    message: state.example.message
   }
 }
 

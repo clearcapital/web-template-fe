@@ -1,4 +1,4 @@
-# JS Curator
+# Fe Template
 
 ## Dependency assumptions
 

@@ -1,0 +1,29 @@
+{
+  "extends": ["plugin:react/recommended", "standard"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "globals": {
+    "describe": true,
+    "it": true,
+    "xdescribe": true,
+    "xit": true,
+    "expect": true,
+    "beforeEach": true,
+    "React": true
+  },
+  "rules": {}
+}

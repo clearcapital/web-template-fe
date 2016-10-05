@@ -1,0 +1,73 @@
+{
+  "name": "zorroa-js-curator",
+  "version": "0.1.1",
+  "description": "this is a front end template using react, redux, and webpack built by jordan with love",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "./node_modules/.bin/serve ./bin",
+    "build": "npm test && ./node_modules/.bin/webpack --config ./build/webpack.prod.js --progress --colors",
+    "deploy": "sh ./build/build-prod.sh",
+    "pretest": "npm run test:lint",
+    "test": "./node_modules/.bin/jest",
+    "posttest": "npm run test:coverage",
+    "test:watch": "./node_modules/.bin/jest --verbose --watch",
+    "test:lint": "./node_modules/.bin/eslint . --color; exit 0",
+    "test:coverage": "echo 'todo: coverage tests'",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.js --progress --inline --hot --open --colors --no-info",
+    "purge": "rm -rf node_modules; npm cache clean; npm install"
+  },
+  "author": "Jordan Papaleo",
+  "license": "",
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "<rootDir>/tests/StyleStub.js",
+      "^.+\\.(jpg|png|jpeg|svg)$": "<rootDir>/tests/MediaStub.js"
+    }
+  },
+  "devDependencies": {
+    "babel-core": "6.14.0",
+    "babel-jest": "15.0.0",
+    "babel-loader": "6.2.5",
+    "babel-polyfill": "6.13.0",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react": "6.11.1",
+    "babel-register": "6.14.0",
+    "css-loader": "0.25.0",
+    "enzyme": "2.4.1",
+    "eslint": "3.5.0",
+    "eslint-config-standard": "6.0.0",
+    "eslint-loader": "1.5.0",
+    "eslint-plugin-react": "6.2.0",
+    "file-loader": "0.9.0",
+    "html-loader": "0.4.3",
+    "html-webpack-plugin": "2.22.0",
+    "jest-cli": "15.1.1",
+    "json-loader": "0.5.4",
+    "less": "2.7.1",
+    "less-loader": "2.2.3",
+    "node-sass": "3.9.3",
+    "raw-loader": "0.5.1",
+    "react-addons-test-utils": "^15.3.1",
+    "react-test-renderer": "15.3.2",
+    "redux-devtools": "3.3.1",
+    "sass-loader": "4.0.2",
+    "serve": "1.4.0",
+    "standard": "8.0.0",
+    "style-loader": "0.13.1",
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.15.1"
+  },
+  "dependencies": {
+    "axios": "0.14.0",
+    "debug": "2.2.0",
+    "react": "15.3.2",
+    "react-dom": "15.3.1",
+    "react-redux": "4.4.5",
+    "react-router": "2.8.0",
+    "react-router-redux": "4.0.5",
+    "redux": "3.6.0",
+    "redux-multi": "0.1.12",
+    "redux-promise": "0.5.3",
+    "redux-thunk": "2.1.0"
+  }
+}

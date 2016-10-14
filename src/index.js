@@ -3,7 +3,8 @@
 import debug from 'debug'
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, browserHistory } from 'react-router'
+import { Router, useRouterHistory } from 'react-router'
+import { createHashHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -15,6 +16,8 @@ import routes from './routes'
 import reducers from './reducers'
 
 const log = debug('application:bootstrap')
+
+const browserHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 log('creating state container')
 const middleware = [thunk, multi, ReduxPromise]

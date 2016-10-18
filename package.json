@@ -1,6 +1,6 @@
 {
   "name": "fe-template",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "this is a front end template using react, redux, and webpack built by jordan with love",
   "scripts": {
     "start": "node server.js",

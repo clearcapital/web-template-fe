@@ -4,23 +4,16 @@ import { bindActionCreators } from 'redux'
 import { exampleActionSync, exampleActionAsync } from '../../actions/exampleAction'
 
 class App extends Component {
-  static get displayName () {
-    return 'App'
-  }
-
-  static propTypes () {
-    return {
-      exampleActionSync: PropTypes.func.isRequired,
-      exampleActionAsync: PropTypes.func.isRequired,
-      message: PropTypes.string,
-      children: PropTypes.node
-    }
+  static propTypes = {
+    exampleActionSync: PropTypes.func.isRequired,
+    exampleActionAsync: PropTypes.func.isRequired,
+    message: PropTypes.string,
+    children: PropTypes.node
   }
 
   constructor (props) {
     super(props)
     this.state = {}
-    this.doStuff = this.doStuff.bind(this)
   }
 
   handleClick (isSyncAction) {
@@ -33,10 +26,6 @@ class App extends Component {
     }
   }
 
-  doStuff () {
-    console.log('this', this)
-  }
-
   render () {
     const { message } = this.props
     console.info(message)
@@ -44,7 +33,6 @@ class App extends Component {
     return (
       <div>
         <h1>App</h1>
-        <button onClick={this.doStuff}>TEST</button>
         <button onClick={this.handleClick.bind(this, true)}>Sync Click</button>
         <button onClick={this.handleClick.bind(this, false)}>Async Click</button>
         <p>{message}</p>

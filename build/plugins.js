@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const paths = require('./paths.js')
 
 module.exports = function getPlugins (env) {
@@ -10,6 +11,7 @@ module.exports = function getPlugins (env) {
       template: paths.appHtml,
       hash: true
     }),
+    new ExtractTextPlugin('vendor.css'),
     new webpack.DefinePlugin({
       'process.env': {
         BUILD_ENV: process.env.ENV
@@ -62,6 +64,3 @@ module.exports = function getPlugins (env) {
 
   return plugins
 }
-
-  // new CaseSensitivePathsPlugin(),
- // new WatchMissingNodeModulesPlugin(PATHS.appNodeModules)

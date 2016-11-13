@@ -33,8 +33,8 @@ class App extends Component {
     return (
       <div>
         <h1>App</h1>
-        <button onClick={this.handleClick.bind(this, true)}>Sync Click</button>
-        <button onClick={this.handleClick.bind(this, false)}>Async Click</button>
+        <button className="sync-button" onClick={this.handleClick.bind(this, true)}>Sync Click</button>
+        <button className="async-button" onClick={this.handleClick.bind(this, false)}>Async Click</button>
         <p>{message}</p>
         {this.props.children}
       </div>

@@ -3,7 +3,17 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { exampleActionSync, exampleActionAsync } from '../../actions/exampleAction'
 
-class App extends Component {
+const mapStateToProps = state => ({
+  message: state.example.message
+})
+
+const mapDispatchToProps = dispatch => (bindActionCreators({
+  exampleActionSync,
+  exampleActionAsync
+}, dispatch))
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class App extends Component {
   static propTypes = {
     exampleActionSync: PropTypes.func.isRequired,
     exampleActionAsync: PropTypes.func.isRequired,
@@ -11,12 +21,9 @@ class App extends Component {
     children: PropTypes.node
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
+  state = {}
 
-  handleClick (isSyncAction) {
+  handleClick = (isSyncAction) => {
     const { exampleActionSync, exampleActionAsync } = this.props
 
     if (isSyncAction) {
@@ -42,22 +49,4 @@ class App extends Component {
   }
 }
 
-// action creators to manipulate redux store
-// We map these actions onto the props for a component
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({
-    exampleActionSync,
-    exampleActionAsync
-  }, dispatch)
-}
 
-// redux store flowing into your module
-function mapStateToProps (state) {
-  console.log('REDUX STATE:', state)
-
-  return {
-    message: state.example.message
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)

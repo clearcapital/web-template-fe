@@ -1,5 +1,12 @@
 {
-  "extends": ["plugin:react/recommended", "standard"],
+  "extends": [
+    "plugin:react/recommended",
+    "standard"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 7,
     "sourceType": "module",
@@ -13,10 +20,11 @@
     "es6": true,
     "node": true
   },
-  "parser": "babel-eslint",
-  "plugins": [
-    "react"
-  ],
+  "ecmaFeatures": {
+    "jsx": true,
+    "es6": true,
+    "classes": true
+  },
   "globals": {
     "describe": true,
     "it": true,
@@ -24,6 +32,7 @@
     "xit": true,
     "expect": true,
     "beforeEach": true,
+    "afterEach": true,
     "React": true
   },
   "rules": {}

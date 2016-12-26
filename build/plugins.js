@@ -1,25 +1,24 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const paths = require('./paths.js')
 
 module.exports = function getPlugins (env) {
   let plugins = [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
       hash: true
     }),
-    new ExtractTextPlugin('vendor.css'),
     new webpack.DefinePlugin({
-      'process.env': {
-        BUILD_ENV: process.env.ENV
-      }
-    })
+      'process.env.NODE_ENV': JSON.stringify(env)
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
   ]
 
-  if (env === 'PROD') {
+  if (env === 'development') {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+    // plugins.push(new webpack.NoErrorsPlugin()) // no errors is used to handle errors more cleanly
+  } else if (env === 'production') {
     const prodPlugins = [
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.AggressiveMergingPlugin({}),

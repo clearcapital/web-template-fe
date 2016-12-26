@@ -1,43 +1,41 @@
 'use strict'
 
-import debug from 'debug'
+import 'react-hot-loader/patch'
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, useRouterHistory } from 'react-router'
+import { AppContainer } from 'react-hot-loader'
+import ApplicationNode from './ApplicationNode'
+import { useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import multi from 'redux-multi'
-import thunk from 'redux-thunk'
-import ReduxPromise from 'redux-promise'
+import { configureStore } from './store'
 
-import routes from './routes'
-import reducers from './reducers'
-
-const log = debug('application:bootstrap')
-
+const preloadState = {}
+const store = configureStore({ ...preloadState })
 const browserHistory = useRouterHistory(createHashHistory)({ queryKey: false })
-
-log('creating state container')
-const middleware = [thunk, multi, ReduxPromise]
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
-const store = createStoreWithMiddleware(reducers)
 const history = syncHistoryWithStore(browserHistory, store)
 
-log('creating application node')
-const applicationNode = (
-  <Provider store={store}>
-    <Router history={history} routes={routes} />
-  </Provider>
-)
-
-log('creating dom node')
 const domNode = document.createElement('div')
 domNode.id = 'application'
 document.body.appendChild(domNode)
 
-log('rendering application to DOM')
-render(applicationNode, domNode, () => {
-  log('finished mounting application')
-})
+render(
+  <AppContainer>
+    <ApplicationNode store={store} history={history} />
+  </AppContainer>,
+  domNode
+)
+
+// For hot reloading of react components
+if (process.env.NODE_ENV !== 'production' && module && module.hot) {
+  module.hot.decline('./routes.js')
+  module.hot.accept('./ApplicationNode', () => {
+    const NextApp = require('./ApplicationNode').default
+    render(
+      <AppContainer>
+        <NextApp store={store} />
+      </AppContainer>,
+      domNode
+    )
+  })
+}

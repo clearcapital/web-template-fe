@@ -1,6 +1,16 @@
 {
-  "presets": ["es2015",  "stage-1", "react"],
+  "presets": [
+    // webpack understands the native import syntax, and uses it for tree shaking
+    ["es2015", { "modules": false }],
+    
+    // See https://tc39.github.io/process-document/
+    "stage-1",
+
+    // Transpile React components to JavaScript
+    "react"
+  ],
   "plugins": [
+    // Enables React code to work with HMR.
     "react-hot-loader/babel",
     "transform-decorators-legacy",
     "transform-class-properties"

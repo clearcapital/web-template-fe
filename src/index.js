@@ -27,15 +27,16 @@ render(
 )
 
 // For hot reloading of react components
-if (process.env.NODE_ENV !== 'production' && module && module.hot) {
+if (module && module.hot) {
   module.hot.decline('./routes.js')
   module.hot.accept('./ApplicationNode', () => {
     const NextApp = require('./ApplicationNode').default
-    render(
-      <AppContainer>
-        <NextApp store={store} />
-      </AppContainer>,
-      domNode
-    )
+    render(NextApp)
+    // render(
+    //   <AppContainer>
+    //     <NextApp store={store} />
+    //   </AppContainer>,
+    //   domNode
+    // )
   })
 }

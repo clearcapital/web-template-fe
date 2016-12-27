@@ -1,14 +1,13 @@
-const path = require('path')
+const { resolve } = require('path')
 
 const nodePaths = (process.env.NODE_PATH || '')
   .split(process.platform === 'win32' ? ';' : ':')
   .filter(Boolean)
-  .map(p => path.resolve(p))
+  .map(p => resolve(p))
 
 module.exports = {
   nodePaths,
-  appHtml: path.resolve('templates/index.tmpl.html'),
-  appSrc: path.resolve('src/index.js'),
-  appBuild: path.resolve('bin'),
-  appNodeModules: path.resolve('node_modules')
+  appSrc: resolve(__dirname, '../src'),
+  appDist: resolve(__dirname, '../dist'),
+  appNodeModules: resolve('node_modules')
 }

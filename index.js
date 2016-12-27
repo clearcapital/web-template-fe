@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   }
 })
 
-app.use(express.static(path.join(__dirname, '/bin')))
+app.use(express.static(path.join(__dirname, '/dist')))
 
 app.listen(process.env.PORT || 3030, () => {
   console.log(`Server running on port:${process.env.PORT || 3030}`)

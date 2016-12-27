@@ -35,18 +35,22 @@ export default class App extends Component {
 
   render () {
     const { message } = this.props
-    console.info(message)
+    const imgSrc = require('./lorem-image.jpg')
+    const videoSrc = require('./lorem-video.mp4')
 
     return (
       <div>
         <h1>App</h1>
-        <button onClick={this.handleClick.bind(this, true)}>Sync Click</button>
-        <button onClick={this.handleClick.bind(this, false)}>Async Click</button>
+        <div>
+          <button onClick={this.handleClick.bind(this, true)}>Sync Click</button>
+          <button onClick={this.handleClick.bind(this, false)}>Async Click</button>
+        </div>
         <p>{message}</p>
-        {this.props.children}
+        <p>{this.props.children}</p>
+        <hr/>
+        <img src={imgSrc} width="400px" />
+        <video src={videoSrc} width="400px" autoPlay loop muted></video>
       </div>
     )
   }
 }
-
-

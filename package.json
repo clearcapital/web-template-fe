@@ -1,12 +1,12 @@
 {
   "name": "fe-template",
   "version": "0.2.5",
-  "description": "this is a front end template using react, redux, and webpack built by jordan with love",
+  "description": "this is a front end template using react 15, redux, and webpack 2 built by jordan with love",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "postinstall": "rm -rf bin; npm run build",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.js --progress --inline --hot --open --colors --no-info --port 3001",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.js --progress --no-info --port 3001",
     "build": "./node_modules/.bin/webpack --config ./build/webpack.prod.js --progress --colors",
     "deploy": "sh ./build/build-deploy.sh",
     "pretest": "npm run test:lint",
@@ -40,22 +40,22 @@
     "express": "4.14.0",
     "gsap": "1.19.0",
     "lodash": "4.16.1",
+    "react": "15.3.2",
     "react-addons-update": "15.3.2",
     "react-dom": "15.3.1",
     "react-redux": "4.4.5",
-    "react-router-redux": "4.0.5",
     "react-router": "2.8.0",
-    "react": "15.3.2",
+    "react-router-redux": "4.0.5",
+    "redux": "3.6.0",
     "redux-multi": "0.1.12",
     "redux-promise": "0.5.3",
-    "redux-thunk": "2.1.0",
-    "redux": "3.6.0"
+    "redux-thunk": "2.1.0"
   },
   "devDependencies": {
     "babel-core": "6.14.0",
     "babel-eslint": "7.0.0",
     "babel-jest": "15.0.0",
-    "babel-loader": "6.2.5",
+    "babel-loader": "6.2.10",
     "babel-plugin-transform-class-properties": "6.11.5",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-polyfill": "6.13.0",
@@ -70,7 +70,7 @@
     "eslint-config-standard": "6.0.0",
     "eslint-loader": "1.5.0",
     "eslint-plugin-react": "6.2.0",
-    "extract-text-webpack-plugin": "1.0.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "0.9.0",
     "html-loader": "0.4.3",
     "html-webpack-plugin": "2.22.0",
@@ -87,11 +87,11 @@
     "redux-devtools": "3.3.1",
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.1.1",
-    "sass-loader": "4.0.2",
-    "serve": "1.4.0",
+    "sass-loader": "4.1.1",
     "standard": "8.0.0",
     "style-loader": "0.13.1",
-    "webpack": "1.13.2",
-    "webpack-dev-server": "1.15.1"
+    "url-loader": "0.5.7",
+    "webpack": "2.2.0-rc.2",
+    "webpack-dev-server": "2.2.0-rc.0"
   }
 }

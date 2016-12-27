@@ -1,28 +1,26 @@
 const getLoaders = require('./loaders')
-const getPreloaders = require('./preloaders')
 const getPlugins = require('./plugins')
 const paths = require('./paths')
-const ENV = 'PROD'
+const ENV = 'production'
 
 module.exports = {
-  devtool: 'source-map',
-  entry: [
-    paths.appSrc
-  ],
+  entry: [ './index.js' ],
   output: {
-    path: paths.appBuild,
-    pathinfo: true,
-    filename: 'static/js/app.bundle.js',
+    filename: 'bundle.js',
+    path: paths.appDist,
     publicPath: '/'
   },
+  context: paths.appSrc,
+  devtool: 'source-map',
   resolve: {
-    fallback: paths.nodePaths,
-    extensions: ['.js', '.json', '.jsx', '']
+    modules: [
+      paths.appNodeModules
+    ],
+    extensions: ['.js', '.json']
   },
   module: {
     noParse: /node_modules\/.bin/,
-    preLoaders: getPreloaders(ENV),
-    loaders: getLoaders(ENV)
+    rules: getLoaders(ENV)
   },
   plugins: getPlugins(ENV)
 }

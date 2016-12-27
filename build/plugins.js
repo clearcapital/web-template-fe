@@ -1,23 +1,18 @@
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const paths = require('./paths.js')
 
 module.exports = function getPlugins (env) {
   let plugins = [
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.appHtml,
-      hash: true
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
-    }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    })
   ]
 
   if (env === 'development') {
     plugins.push(new webpack.HotModuleReplacementPlugin())
-    // plugins.push(new webpack.NoErrorsPlugin()) // no errors is used to handle errors more cleanly
+    // enable HMR globally
+
+    plugins.push(new webpack.NamedModulesPlugin())
+    // prints more readable module names in the browser console on HMR updates
   } else if (env === 'production') {
     const prodPlugins = [
       new webpack.optimize.DedupePlugin(),

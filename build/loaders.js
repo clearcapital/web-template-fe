@@ -1,61 +1,71 @@
-const paths = require('./paths')
+// const paths = require('./paths')
 
 module.exports = function getLoaders (env) {
   const loaders = [
     {
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        cacheDirectory: true
-      }
+      test: /\.(js)$/,
+      use: ['eslint-loader'],
+      enforce: 'pre',
+      exclude: /(node_modules|bower_components)/
+    },
+    {
+      test: /\.js$/,
+      use: ['babel-loader'],
+      exclude: /node_modules/
     },
     {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      use: ['style-loader', 'css-loader?modules']
     },
     {
       test: /\.less$/,
-      loader: 'style-loader!css-loader!less-loader'
+      use: ['style-loader', 'css-loader?modules', 'less-loader']
     },
     {
       test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader'
+      use: ['style-loader', 'css-loader?modules', 'sass-loader']
     },
     {
-      test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+      test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
       exclude: /\/favicon.ico$/,
-      loader: 'file',
-      query: {
-        name: 'static/media/[name].[hash:8].[ext]'
-      }
+      use: [
+        // {
+        //   loader: 'url-loader',
+        //   options: {
+        //     limit: 10000,
+        //     name: 'static/media/[name].[hash:8].[ext]'
+        //   }
+        // }
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'static/media/[name].[hash:8].[ext]'
+          }
+        }
+      ]
     },
     {
       test: /\/favicon.ico$/,
-      include: paths.appSrc,
-      loader: 'file',
-      query: {
-        name: 'favicon.ico?[hash:8]'
-      }
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'favicon.ico?[hash:8]'
+          }
+        }
+      ]
     },
     {
       test: /\.(mp4|webm)(\?.*)?$/,
-      loader: 'url',
-      query: {
-        limit: 10000,
-        name: 'static/media/[name].[hash:8].[ext]'
-      }
-    },
-    {
-      test: /\.html$/,
-      loader: 'html',
-      query: {
-        attrs: ['link:href']
-      }
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'static/media/[name].[hash:8].[ext]'
+          }
+        }
+      ]
     }
   ]
 

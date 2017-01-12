@@ -1,4 +1,4 @@
-# Fe Template
+# React Template
 
 ## Dependency assumptions
 

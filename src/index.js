@@ -32,11 +32,5 @@ if (module && module.hot) {
   module.hot.accept('./ApplicationNode', () => {
     const NextApp = require('./ApplicationNode').default
     render(NextApp)
-    // render(
-    //   <AppContainer>
-    //     <NextApp store={store} />
-    //   </AppContainer>,
-    //   domNode
-    // )
   })
 }

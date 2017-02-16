@@ -15,7 +15,7 @@ app.use((req, res, next) => {
     return unauthorized(res)
   }
 
-  if (user.name === 'cc-dev' && user.pass === 'PowDay1') {
+  if (user.name === 'react-dev' && user.pass === 'iLoveEs6') {
     return next()
   } else {
     return unauthorized(res)

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "postinstall": "rm -rf bin; npm run build",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.js --progress --no-info --port 3001",
-    "build": "./node_modules/.bin/webpack --config ./build/webpack.prod.js --progress --colors",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./config/webpack.dev.js --progress --no-info --port 3001",
+    "build": "./node_modules/.bin/webpack --config ./config/webpack.prod.js --progress --colors",
     "deploy": "sh ./build/build-deploy.sh",
     "pretest": "npm run test:lint",
     "test": "./node_modules/.bin/jest",

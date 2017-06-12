@@ -1,6 +1,6 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import {Provider} from 'react-redux'
+import {mount} from 'enzyme'
 import App from './App'
 import ExampleBox from '../../components/ExampleBox'
 
@@ -10,7 +10,7 @@ const storeFake = (state) => {
     subscribe: () => {},
     dispatch: () => {},
     getState: () => {
-      return Object.assign({}, state)
+      return {...state}
     }
   }
 }

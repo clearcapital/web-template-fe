@@ -1,4 +1,4 @@
-import { SYNC_CLICK, ASYNC_CLICK } from '../constants/actionTypes'
+import {SYNC_CLICK, ASYNC_CLICK} from '../constants/actionTypes'
 
 export function exampleActionSync () {
   return {

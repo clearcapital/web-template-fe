@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class Input extends Component {
   static propTypes = {
@@ -16,16 +17,20 @@ export default class Input extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.value !== this.state.value) {
-      this.setState({
-        value: nextProps.value || ''
+      this.setState(() => {
+        return {
+          value: nextProps.value || ''
+        }
       })
     }
   }
 
   handleChange = (se) => {
     const {cb, name} = this.props
-    this.setState({
-      value: se.target.value
+    this.setState(() => {
+      return {
+        value: se.target.value
+      }
     })
 
     if (cb) {

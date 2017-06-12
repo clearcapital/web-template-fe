@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { exampleActionSync, exampleActionAsync } from '../../actions/exampleAction'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {exampleActionSync, exampleActionAsync} from '../../actions/exampleAction'
 
 const mapStateToProps = state => ({
   message: state.example.message
@@ -34,7 +35,7 @@ export default class App extends Component {
   }
 
   render () {
-    const { message } = this.props
+    const {message} = this.props
     const imgSrc = require('./lorem-image.jpg')
     const videoSrc = require('./lorem-video.mp4')
 

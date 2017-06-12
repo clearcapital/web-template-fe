@@ -1,4 +1,4 @@
-import { SYNC_CLICK, ASYNC_CLICK } from '../constants/actionTypes'
+import {SYNC_CLICK, ASYNC_CLICK} from '../constants/actionTypes'
 
 const initialState = {
   message: ''
@@ -7,13 +7,15 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case SYNC_CLICK:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         message: action.payload
-      })
+      }
     case ASYNC_CLICK:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         message: action.payload
-      })
+      }
     default:
       return state
   }

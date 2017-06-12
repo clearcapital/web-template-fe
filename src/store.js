@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import {createStore, applyMiddleware, compose} from 'redux'
 import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 import ReduxPromise from 'redux-promise'
-import { persistState } from 'redux-devtools'
+import {persistState} from 'redux-devtools'
 import DevTools from './components/DevTools'
 import rootReducer from './reducers'
 

@@ -15,7 +15,6 @@ module.exports = function getPlugins (env) {
     // prints more readable module names in the browser console on HMR updates
   } else if (env === 'production') {
     const prodPlugins = [
-      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.AggressiveMergingPlugin({}),
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,

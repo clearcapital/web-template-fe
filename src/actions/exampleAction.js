@@ -1,4 +1,7 @@
 import {SYNC_CLICK, ASYNC_CLICK} from '../constants/actionTypes'
+import Api from '../services/Api'
+
+const api = new Api('https://api.github.com')
 
 export function exampleActionSync () {
   return {
@@ -8,12 +11,12 @@ export function exampleActionSync () {
 }
 
 export function exampleActionAsync () {
-  return (dispatch) => {
-    setTimeout(() => {
-      dispatch({
-        type: ASYNC_CLICK,
-        payload: 'test async click'
-      })
-    }, 500)
+  return async (dispatch) => {
+    const results = await api.get('orgs/clearcapital/repos')
+
+    dispatch({
+      type: ASYNC_CLICK,
+      payload: `GH: Clear Capital has ${results.length} repos`
+    })
   }
 }

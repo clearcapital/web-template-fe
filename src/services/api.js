@@ -1,79 +1,90 @@
 import axios from 'axios'
 
-const baseURL = window.location.origin
+export default class Api {
+  static headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json;charser=utf-8'
+  }
 
-function request (url, options, passThrough) {
-  return new Promise((resolve, reject) => {
-    return axios(url, options).then(
-      (response) => {
+  static timeout = 120000
+
+  constructor (baseUrl) {
+    this.baseUrl = baseUrl
+  }
+
+  request (url, options, passThrough) {
+    return axios(url, options)
+      .then((response) => {
+        console.log('response', response)
+
         if (response.statusText === 'OK') {
+          let data = response.data
+
           if (passThrough) {
-            response.data = {
-              ...response.data,
-              ...passThrough
+            data = {
+              ...passThrough,
+              ...response.data
             }
           }
-          resolve(response.data)
+
+          return data
         } else {
-          reject({
-            status: response.status,
-            statusText: response.statusText
-          })
+          throw new Error(`${response.status} ${response.statusText}`)
         }
-      },
-      (err) => {
-        reject(err)
-      }
-    )
-  })
-}
-
-const headers = function () {
-  return {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+      })
   }
-}
 
-export const api = {
-  get (url, passThrough) {
+  get (url, passThrough, timeout = Api.timeout) {
+    const {headers} = Api
+    const {request, baseUrl} = this
     const options = {
-      headers: headers(),
+      timeout,
+      headers: headers,
       method: 'GET',
       mode: 'cors'
     }
 
-    return request(`${baseURL}/${url}`, options, passThrough)
-  },
-  post (url, data, passThrough) {
+    return request(`${baseUrl}/${url}`, options, passThrough)
+  }
+
+  post (url, data, passThrough, timeout = Api.timeout) {
+    const {headers} = Api
+    const {request, baseUrl} = this
     const options = {
-      data,
-      headers: headers(),
+      timeout,
+      headers,
+      body: JSON.stringify(data),
       method: 'POST',
-      body: JSON.stringify(data),
       mode: 'cors'
     }
 
-    return request(`${baseURL}/${url}`, options, passThrough)
-  },
-  put (url, data, passThrough) {
+    return request(`${baseUrl}/${url}`, options, passThrough)
+  }
+
+  put (url, data, passThrough, timeout = Api.timeout) {
+    const {headers} = Api
+    const {request, baseUrl} = this
     const options = {
-      data,
-      headers: headers(),
+      timeout,
+      headers,
+      body: JSON.stringify(data),
       method: 'PUT',
-      body: JSON.stringify(data),
       mode: 'cors'
     }
 
-    return request(`${baseURL}/${url}`, options, passThrough)
-  },
-  delete (url, passThrough) {
+    return request(`${baseUrl}/${url}`, options, passThrough)
+  }
+
+  delete (url, passThrough, timeout = Api.timeout) {
+    const {headers} = Api
+    const {request, baseUrl} = this
     const options = {
-      headers: headers(),
+      timeout,
+      headers,
       method: 'DELETE',
       mode: 'cors'
     }
 
-    return request(`${baseURL}/${url}`, options, passThrough)
+    return request(`${baseUrl}/${url}`, options, passThrough)
   }
 }

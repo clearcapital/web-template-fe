@@ -59,6 +59,13 @@ Sometimes the live reloading or a node server may hang (you did not close it).  
 
 One of the first things I do I am getting node errors is clean house.  We have a special script to delete all dependencies from your project and from your computers cache the reinstall them: `npm run purge`
 
+### Authentication
+This template comes with a very basic authentication layer.  The default login information is as follows:
+- Username: `react-dev`
+- Password: `iLoveEs6`
+
+If you would like to change or remove them, the login credentials are set in `./index.js`.
+
 ## Testing
 
 You can run the tests by executing the following command in your terminal: `npm test`.  This will run the entire test suite.  You can also use `npm run test:watch` to run the tests and have them watch for changes.  This is super useful when writing your tests.
